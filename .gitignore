@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.nox/
+.eggs/
+instance/
+.web-env/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Model file in root (it's inside functions now)
+/model.pkl
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo

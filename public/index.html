@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🏡 House Price Prediction</title>
+</head>
+<body>
+  <h2>Predict House Price</h2>
+  <form id="predictForm">
+    Median Income: <input type="number" id="MedInc" step="any"><br>
+    House Age: <input type="number" id="HouseAge" step="any"><br>
+    Avg Rooms: <input type="number" id="AveRooms" step="any"><br>
+    Avg Bedrooms: <input type="number" id="AveBedrms" step="any"><br>
+    Population: <input type="number" id="Population" step="any"><br>
+    Avg Occupants: <input type="number" id="AveOccup" step="any"><br>
+    Latitude: <input type="number" id="Latitude" step="any"><br>
+    Longitude: <input type="number" id="Longitude" step="any"><br>
+    <button type="submit">Predict</button>
+  </form>
+  <h3 id="result"></h3>
+<script>
+document.getElementById("predictForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  let body = {
+    MedInc: parseFloat(document.getElementById("MedInc").value),
+    HouseAge: parseFloat(document.getElementById("HouseAge").value),
+    AveRooms: parseFloat(document.getElementById("AveRooms").value),
+    AveBedrms: parseFloat(document.getElementById("AveBedrms").value),
+    Population: parseFloat(document.getElementById("Population").value),
+    AveOccup: parseFloat(document.getElementById("AveOccup").value),
+    Latitude: parseFloat(document.getElementById("Latitude").value),
+    Longitude: parseFloat(document.getElementById("Longitude").value)
+  };
+  let res = await fetch("/predict", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)});
+  let data = await res.json();
+  document.getElementById("result").innerText = "Estimated Price: $" + data.EstimatedPrice.toFixed(2);
+});
+</script>
+</body>
+</html>
